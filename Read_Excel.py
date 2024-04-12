@@ -1,41 +1,38 @@
 import openpyxl 
 import unittest
 
-wb = openpyxl.load_workbook('C:\\Users\\edward\\OneDrive - Neville Registrars Limited\\Documents\\course work\\ImportTemplate.xlsx', data_only=True)
+wb = openpyxl.load_workbook('C:\\Users\\edward\\OneDrive - Neville Registrars Limited\\Documents\\ImportTemplate.xlsx', data_only=True)
 
 ws = wb.active
 
-sheet_search = input("select sheet: ")
-search = int(input("select designation ID: "))
+#search = int(input("select designation ID: "))
 
-ws = wb[sheet_search]
+ws = wb["April 2nd"]
 
-def get_div(search):
-    global count
+def find_an_email(search):
     count = 0
     for row in ws.iter_rows(min_row=1, min_col=1, max_row=12, max_col=3): 
-        count += 1
+        count = 0
         for cell in row:
             if cell.value == search:
-                            return str(ws["S"+str(count)].value)
-
+                            return str(ws["I"+str(count)].value)
             else:
                 continue
     
-print(get_div(search))
-    
-def get_total():
-        return str(ws["S9"].value)
-    
-print(get_total())
+#print(find_an_email(search))
 
-class tests(unittest.TestCase):
-    def test_div(self):
-        assert get_div(search) == str(ws["S"+str(count)].value)
-        assert get_div(" ") == None
+def send_email(email):
+      print(email)
 
-    def test_total(self):
-        assert get_total() == str(ws["S9"].value)
-           
-if __name__=='__main__':
-    unittest.main()
+def send_emails():
+      count = 1
+      for row in ws.iter_rows():
+            count += 1
+            if ws["I"+str(count)].value == None:
+                  return 
+            else:
+                  email = str(ws["I"+str(count)].value)
+                  send_email(email)
+
+send_emails()
+    
