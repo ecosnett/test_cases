@@ -5,34 +5,22 @@ wb = openpyxl.load_workbook('ImportTemplate.xlsx', data_only=True)
 
 ws = wb.active
 
-#search = int(input("select designation ID: "))
+sheet_search = input("select sheet: ")
+search = int(input("select designation ID: "))
 
-ws = wb["April 2nd"]
+ws = wb[sheet_search]
 
-def find_an_email(search):
+def get_div(search):
+    global count
     count = 0
     for row in ws.iter_rows(min_row=1, min_col=1, max_row=12, max_col=3): 
-        count = 0
+        count += 1
         for cell in row:
             if cell.value == search:
-                            return str(ws["I"+str(count)].value)
+                            return str(ws["S"+str(count)].value)
+
             else:
                 continue
-    
-#print(find_an_email(search))
+def get_total():
+        return str(ws["S9"].value)
 
-def send_email(email):
-      print(email)
-
-def send_emails():
-      count = 1
-      for row in ws.iter_rows():
-            count += 1
-            if ws["I"+str(count)].value == None:
-                  return 
-            else:
-                  email = str(ws["I"+str(count)].value)
-                  send_email(email)
-
-send_emails()
-    
