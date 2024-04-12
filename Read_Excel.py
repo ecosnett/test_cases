@@ -1,7 +1,7 @@
 import openpyxl 
 import unittest
 
-wb = openpyxl.load_workbook('C:\\Users\\edward\\OneDrive - Neville Registrars Limited\\Documents\\ImportTemplate.xlsx', data_only=True)
+wb = openpyxl.load_workbook('ImportTemplate.xlsx', data_only=True)
 
 ws = wb.active
 
