@@ -1,3 +1,5 @@
+from Read_Excel import get_div, get_total
+
 class tests(unittest.TestCase):
     def test_div(self):
         assert get_div(search) == str(ws["S"+str(count)].value)
